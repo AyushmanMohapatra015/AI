@@ -127,4 +127,4 @@ IDDFS provides a balanced and efficient uninformed search strategy.
 ## 7. How to Run the Code
 
 ```bash
-python missionaries_cannibals.py
+python3 missionaries_cannibals.py
