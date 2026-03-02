@@ -6,7 +6,7 @@ class MissionariesCannibals:
         self.start = (3, 3, 1)
         self.goal = (0, 0, 0)
 
-    # Check if state is valid
+    # ---------------- VALID STATE CHECK ----------------
     def is_valid(self, state):
         M, C, _ = state
         M_right = 3 - M
@@ -23,7 +23,7 @@ class MissionariesCannibals:
 
         return True
 
-    # Generate successor states
+    # ---------------- SUCCESSOR FUNCTION ----------------
     def get_successors(self, state):
         M, C, boat = state
         moves = [(1,0), (2,0), (0,1), (0,2), (1,1)]
@@ -42,7 +42,8 @@ class MissionariesCannibals:
 
     # ---------------- BFS ----------------
     def bfs(self):
-        start_time = time.time()
+        start_time = time.perf_counter()
+
         queue = deque([(self.start, [])])
         visited = set()
         nodes_expanded = 0
@@ -52,7 +53,7 @@ class MissionariesCannibals:
             nodes_expanded += 1
 
             if state == self.goal:
-                end_time = time.time()
+                end_time = time.perf_counter()
                 return path + [state], nodes_expanded, end_time - start_time
 
             if state not in visited:
@@ -65,7 +66,8 @@ class MissionariesCannibals:
 
     # ---------------- DFS ----------------
     def dfs(self):
-        start_time = time.time()
+        start_time = time.perf_counter()
+
         stack = [(self.start, [])]
         visited = set()
         nodes_expanded = 0
@@ -75,7 +77,7 @@ class MissionariesCannibals:
             nodes_expanded += 1
 
             if state == self.goal:
-                end_time = time.time()
+                end_time = time.perf_counter()
                 return path + [state], nodes_expanded, end_time - start_time
 
             if state not in visited:
@@ -86,8 +88,10 @@ class MissionariesCannibals:
 
         return None, nodes_expanded, 0
 
-    # ---------------- Depth Limited Search ----------------
-    def dls(self, state, path, depth_limit, visited):
+    # ---------------- DEPTH LIMITED SEARCH ----------------
+    def dls(self, state, path, depth_limit, visited, nodes):
+        nodes[0] += 1
+
         if state == self.goal:
             return path + [state]
 
@@ -98,47 +102,49 @@ class MissionariesCannibals:
 
         for successor in self.get_successors(state):
             if successor not in visited:
-                result = self.dls(successor, path + [state], depth_limit - 1, visited)
+                result = self.dls(successor, path + [state], depth_limit - 1, visited, nodes)
                 if result:
                     return result
 
         return None
 
-    # ---------------- Iterative Deepening ----------------
+    # ---------------- IDDFS ----------------
     def iddfs(self, max_depth):
-        start_time = time.time()
-        nodes_expanded = 0
+        start_time = time.perf_counter()
+        total_nodes = 0
 
         for depth in range(max_depth + 1):
             visited = set()
-            result = self.dls(self.start, [], depth, visited)
-            nodes_expanded += len(visited)
+            nodes = [0]
+
+            result = self.dls(self.start, [], depth, visited, nodes)
+            total_nodes += nodes[0]
 
             if result:
-                end_time = time.time()
-                return result, nodes_expanded, end_time - start_time
+                end_time = time.perf_counter()
+                return result, total_nodes, end_time - start_time
 
-        return None, nodes_expanded, 0
+        return None, total_nodes, 0
 
 
 # ---------------- MAIN ----------------
 if __name__ == "__main__":
     problem = MissionariesCannibals()
 
-    print("\n=== BFS ===")
-    bfs_solution, bfs_nodes, bfs_time = problem.bfs()
-    print("Solution Path:", bfs_solution)
-    print("Nodes Expanded:", bfs_nodes)
-    print("Time Taken:", bfs_time)
+    print("\n===== BFS =====")
+    sol, nodes, t = problem.bfs()
+    print("Solution Path:", sol)
+    print("Nodes Expanded:", nodes)
+    print("Time Taken: {:.10f} seconds".format(t))
 
-    print("\n=== DFS ===")
-    dfs_solution, dfs_nodes, dfs_time = problem.dfs()
-    print("Solution Path:", dfs_solution)
-    print("Nodes Expanded:", dfs_nodes)
-    print("Time Taken:", dfs_time)
+    print("\n===== DFS =====")
+    sol, nodes, t = problem.dfs()
+    print("Solution Path:", sol)
+    print("Nodes Expanded:", nodes)
+    print("Time Taken: {:.10f} seconds".format(t))
 
-    print("\n=== IDDFS ===")
-    iddfs_solution, iddfs_nodes, iddfs_time = problem.iddfs(20)
-    print("Solution Path:", iddfs_solution)
-    print("Nodes Expanded:", iddfs_nodes)
-    print("Time Taken:", iddfs_time)
+    print("\n===== IDDFS =====")
+    sol, nodes, t = problem.iddfs(20)
+    print("Solution Path:", sol)
+    print("Nodes Expanded:", nodes)
+    print("Time Taken: {:.10f} seconds".format(t))
