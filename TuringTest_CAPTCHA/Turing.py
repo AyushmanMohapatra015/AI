@@ -1,84 +1,62 @@
 import random
 
-# Possible human-like responses
-human_replies = {
-    "how are you": [
-        "Pretty good actually, just relaxing.",
-        "Doing alright, a little tired though.",
-        "I'm fine, just busy with some work."
-    ],
-
-    "what do you like": [
-        "I enjoy music and going out with friends.",
-        "Mostly sports and movies.",
-        "Reading and gaming are fun for me."
-    ],
-
-    "what is 6+4": [
-        "That should be 10.",
-        "Easy, it's 10.",
-        "Hmm... 10 I think."
-    ]
+human_answers = {
+    "hello": ["Hey there!", "Hi! How's it going?", "Hello!"],
+    "what is 5+3": ["That's 8.", "Pretty sure it's 8.", "8, easy!"],
+    "do you like music": ["Yeah, I listen to music a lot.", "Music is great!"]
 }
 
-# Possible AI-like responses
-ai_replies = {
-    "how are you": [
-        "System status: operating normally.",
-        "All processes are functioning correctly."
-    ],
-
-    "what do you like": [
-        "I do not experience personal preferences.",
-        "I am not capable of hobbies."
-    ],
-
-    "what is 6+4": [
-        "The computed result equals 10.",
-        "Calculation result: 10."
-    ]
+ai_answers = {
+    "hello": ["Greetings.", "Hello. I acknowledge your message."],
+    "what is 5+3": ["The result equals 8.", "Calculation output: 8."],
+    "do you like music": ["I do not possess preferences.", "I cannot experience music."]
 }
 
-
-def generate_answer(question, agent):
+def reply(question, agent):
     q = question.lower()
 
     if agent == "human":
-        if q in human_replies:
-            return random.choice(human_replies[q])
-        return "I'm not sure about that question."
+        if q in human_answers:
+            return random.choice(human_answers[q])
+        return "Hmm, I am not sure."
 
     else:
-        if q in ai_replies:
-            return random.choice(ai_replies[q])
-        return "Input not recognized."
+        if q in ai_answers:
+            return random.choice(ai_answers[q])
+        return "Input not understood."
 
 
-def run_turing_test():
+def turing_test():
 
-    score = 0
     rounds = 3
+    correct = 0
 
     for i in range(rounds):
 
-        print("\nRound", i + 1)
-        responder = random.choice(["human", "ai"])
+        print("\nRound", i+1)
+
+        agent = random.choice(["human", "ai"])
 
         question = input("Judge asks: ")
 
-        answer = generate_answer(question, responder)
+        response = reply(question, agent)
 
-        print("Response:", answer)
+        print("Response:", response)
 
-        guess = input("Is it human or ai? ").lower()
+        guess = input("Your guess (human/ai): ").lower()
 
-        if guess == responder:
-            print("Correct guess!")
-            score += 1
+        if guess == agent:
+            print("Correct guess.")
+            correct += 1
         else:
-            print("Wrong guess!")
+            print("Wrong guess.")
 
-    print("\nFinal Score:", score, "/", rounds)
+    print("\nJudge guessed correctly", correct, "out of", rounds)
+
+    if correct >= 2:
+        print("Judge successfully distinguished the AI from the human.")
+    else:
+        print("AI passed the Turing Test. The judge could not reliably tell.")
 
 
-run_turing_test()
+turing_test()
