@@ -1,6 +1,6 @@
 ## 1. Turing Test
 
-### Purpose
+### <u>Purpose</u>
 
 This test is used to determine whether a system responding to questions behaves like a human or a computer program.
 
