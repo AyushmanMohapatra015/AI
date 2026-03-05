@@ -29,7 +29,7 @@ Turing.py
 
 ---
 
-# 2. CAPTCHA(Automated bot detection)
+# 2. CAPTCHA
 
 ### Purpose
 
