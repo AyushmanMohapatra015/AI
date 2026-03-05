@@ -35,7 +35,7 @@ A simple reflex agent that retrieves real-time air quality data and provides hea
 ### Usage
 
 ```bash
-python aqi_agent.py
+python AQI_agent.py
 ```
 
 When prompted:
