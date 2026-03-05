@@ -40,8 +40,8 @@ python AQI_agent.py
 
 When prompted:
 1. Enter your OpenWeatherMap API key
-2. Enter latitude (e.g., 40.7128 for New York City)
-3. Enter longitude (e.g., -74.0060 for New York City)
+2. Enter latitude (e.g., 17.366 for Hyderabad)
+3. Enter longitude (e.g., 78.476 for Hyderabad)
 
 The agent will display:
 - Current coordinates
