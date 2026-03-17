@@ -1,4 +1,4 @@
-# UGV Dynamic Path Planning (Q2)
+# UGV Dynamic Path Planning 
 
 ## Overview
 
@@ -79,7 +79,7 @@ These metrics help measure the **efficiency and robustness of the navigation alg
 ## Project Structure
 
 ```id="5bxvfx"
-UGV_Q2/
+UGV_Q3_DynamicObstacles/
 │
 ├── UGV_Dynamic.py
 └── README.md
