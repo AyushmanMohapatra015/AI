@@ -1,6 +1,6 @@
 import heapq
 
-# Graph as adjacency list
+
 graph = {}
 
 def add_edge(u, v, w):
@@ -10,7 +10,7 @@ def add_edge(u, v, w):
         graph[v] = []
         
     graph[u].append((v, w))
-    graph[v].append((u, w))  # undirected graph
+    graph[v].append((u, w))  
 
 
 def dijkstra(source, destination):
@@ -35,22 +35,18 @@ def dijkstra(source, destination):
                 parent[neighbor] = city
                 heapq.heappush(pq, (dist[neighbor], neighbor))
     
-    # -----------------------------
-    # PRINT DISTANCES TO ALL CITIES
-    # -----------------------------
+   
     print("\nShortest distances from", source, ":\n")
     for city in dist:
         print(f"{city}: {dist[city]} km")
     
-    # -----------------------------
-    # PRINT SHORTEST PATH TO DESTINATION
-    # -----------------------------
+    
     print("\nShortest Distance to", destination, ":", dist[destination], "km")
     
     path = []
     temp = destination
     
-    # Handle case if no path exists
+    # Handling case if no path exists
     if temp not in parent and temp != source:
         print("No path exists!")
         return
@@ -65,9 +61,7 @@ def dijkstra(source, destination):
     print("Path:", " -> ".join(path))
 
 
-# -----------------------------
 # DATASET (Indian Cities)
-# -----------------------------
 
 add_edge("Delhi", "Jaipur", 280)
 add_edge("Delhi", "Lucknow", 550)
@@ -88,10 +82,6 @@ add_edge("Bangalore", "Chennai", 350)
 
 add_edge("Kolkata", "Chennai", 1670)
 
-
-# -----------------------------
-# DRIVER CODE
-# -----------------------------
 
 source = input("Enter source city: ")
 destination = input("Enter destination city: ")
