@@ -28,4 +28,4 @@ such that no adjacent regions share the same color.
 Make sure Python is installed, then run:
 
 ```bash
-python3 MapColoring_CSP.py
+python3 MapColoring_Australia.py
