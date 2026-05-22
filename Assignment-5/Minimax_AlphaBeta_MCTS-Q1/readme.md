@@ -1,9 +1,5 @@
 # AI Game Search Algorithms (Tic-Tac-Toe)
 
-This project implements four classical AI game search algorithms using Tic-Tac-Toe as the test environment.
-
----
-
 ## Algorithms Implemented
 
 - Minimax Search  
@@ -108,7 +104,7 @@ Monte-Carlo Tree Search is probabilistic and may occasionally produce non-optima
 Make sure Python is installed, then run:
 
 ```bash
-python game_search_algorithms.py
+Minimax_AlphaBeta_MCTS.py
 ```
 
 ---
@@ -122,7 +118,7 @@ python game_search_algorithms.py
 
 ---
 
-## AI Concepts Demonstrated
+## AI Concepts used -
 
 - Adversarial Search  
 - Game Trees  
@@ -133,6 +129,4 @@ python game_search_algorithms.py
 
 ---
 
-## Conclusion
 
-This project successfully demonstrates the implementation and comparison of Minimax, Alpha-Beta, Heuristic Alpha-Beta, and Monte-Carlo Tree Search algorithms for intelligent decision-making in adversarial games.
